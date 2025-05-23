@@ -4,9 +4,12 @@ import React from "react";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 
+
 const page = async () => {
+
   const snippets = await prisma.snippet.findMany();
   // console.log(snippets)
+
   
   return (
     <>
@@ -23,8 +26,10 @@ const page = async () => {
           </Link>
         </div>
       </div>
-
-      {snippets.map((snippet) => (
+      
+      
+        
+      {snippets.map((snippet: { id: React.Key | null | undefined; title: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<unknown>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<unknown>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; }) => (
         <div key={snippet.id} className="flex items-center justify-between bg-gray-200 p-2 rounded-md my-2">
           <h1>{snippet.title}</h1>
           
