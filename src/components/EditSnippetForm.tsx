@@ -1,23 +1,24 @@
 "use client";
 import { Editor } from "@monaco-editor/react";
 import React, { useState } from "react";
-import type { Snippet } from "@prisma/client";
 import { Button } from "./ui/button";
 import { saveSnippet } from "@/actions";
 
+type MySnippet = {
+    id: string; 
+    title:string;// MongoDB ObjectId is usually string in JS
+    code: string;
+  };
+  
 
-const EditSnippetForm = ({ snippet }: { snippet: Snippet }) => {
+const EditSnippetForm = ({ snippet }: { snippet: MySnippet }) => {
   const [code, setCode] = useState(snippet.code);
 
   const changeEvenHandler = (value:string = "") => {
     setCode(value);
   }
 
-  // you can't use server action as a inline inside client component
-  //   async function saveSnippet () {
-  //     "use server"
 
-  //   }
 
   const saveSnippetAction = saveSnippet.bind(null, snippet.id, code);
 
